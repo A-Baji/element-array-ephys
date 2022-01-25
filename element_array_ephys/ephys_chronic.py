@@ -150,7 +150,7 @@ class InsertionLocation(dj.Manual):
 
 
 @schema
-class EphysRecording(dj.Imported, utils.MakeEphysRecording):
+class EphysRecording(utils.EphysRecordingTemplate, dj.Imported):
     definition = """
     # Ephys recording from a probe insertion for a given session.
     -> Session
@@ -169,16 +169,6 @@ class EphysRecording(dj.Imported, utils.MakeEphysRecording):
         -> master
         file_path: varchar(255)  # filepath relative to root data directory
         """
-
-    table_map = {
-        'ProbeInsertion': ProbeInsertion,
-        'Probe': probe.Probe,
-        'ProbeType': probe.ProbeType,
-        'Electrode': probe.ProbeType.Electrode
-    }
-
-    def make(self, key):
-        super(EphysRecording, self).make(self, key, self.table_map)
 
 
 @schema

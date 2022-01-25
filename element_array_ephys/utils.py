@@ -1,4 +1,4 @@
-class MakeEphysRecording():
+class EphysRecordingTemplate():
 
     def make(table, key, table_map):
         sess_dir = find_full_path(get_ephys_root_data_dir(),
